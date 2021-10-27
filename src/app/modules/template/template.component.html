@@ -1,0 +1,134 @@
+<h4><small> TEMPLATE </small>Forms</h4>
+<hr>
+<!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" -->
+<form autocomplete="off"
+      (ngSubmit)="onSubmit(myTemplateForm)"
+      #myTemplateForm="ngForm">
+
+  <div>
+
+    <!-- Name Input -->
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+
+        <input class="form-control is-invalid"
+               [class.is-invalid]="name.invalid && name.touched"
+               type="text"
+               placeholder="Nombre"
+               name="name"
+               [ngModel]="user.name"
+               required
+               minlength="5"
+               #name="ngModel">
+        <small class="form-text text-danger"
+               *ngIf="name.invalid && name.touched">
+          Name must be at least 5 letters
+        </small>
+      </div>
+    </div>
+
+    <!-- Lastname Input -->
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
+
+        <input class="form-control"
+               [class.is-invalid]="lastname.invalid && lastname.touched"
+               type="text"
+               placeholder="Apellido"
+               name="lastname"
+               [ngModel]="user.lastname"
+               required
+               minlength="3"
+               #lastname="ngModel">
+        <small class="form-text text-danger"
+               *ngIf="lastname.invalid && lastname.touched">
+          Latname must be at least 3 letters
+        </small>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Email Input -->
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-8">
+
+      <input class="form-control"
+             [class.is-invalid]="email.invalid && email.touched"
+             type="email"
+             placeholder="Correo electrónico"
+             name="email"
+             [ngModel]="user.email"
+             required
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             #email="ngModel">
+      <small class="form-text text-danger"
+              *ngIf="email.invalid && email.touched">
+        Email must be a valid email
+      </small>
+    </div>
+  </div>
+
+  <!-- Select Input -->
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Country</label>
+    <div class="col-8">
+      <select class="form-control"
+              [class.is-invalid]="country.invalid && country.touched"
+              name="my-country"
+              [ngModel]="user.country"
+              required
+              [disabled]="!countries.length"
+              #country="ngModel">
+        <option value="" selected class="text-center" disabled>
+          ----- Select a country -----
+        </option>
+        <option *ngFor="let country of countries" [value]="country.cioc">
+          {{ country.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Radio Button Input -->
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Gender</label>
+    <div class="col-8">
+      <div class="form-check form-ckeck-inline">
+        <input type="radio"
+               class="form-check-input"
+               [class.is-invalid]="gender.invalid && gender.touched"
+               name="gender"
+               value="M"
+               required
+               [ngModel]="user.gender"
+               #gender="ngModel">
+        <label class="form-check-label">Male</label>
+      </div>
+      <div class="form-check form-ckeck-inline">
+        <input type="radio"
+               class="form-check-input"
+               [class.is-invalid]="gender.invalid && gender.touched"
+               name="gender"
+               value="F"
+               required
+               [ngModel]="user.gender"
+               #gender="ngModel">
+        <label class="form-check-label">Female</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Save
+      </button>
+    </div>
+  </div>
+
+</form>
