@@ -1,0 +1,69 @@
+<div class="row justify-content-around g-3">
+
+  <div class="col-md-5 border border-4 py-2 rounded-3">
+    <button class="btn btn-primary"
+            (click)="addSkill()">
+      Add Skill
+    </button>
+    <form [formGroup]="myForm" class="bg-warning">
+
+      <div class="my-2">
+        <label class="form-label fw-bold">Enter your name</label>
+        <input class="form-control"
+               type="text"
+               placeholder="Name"
+               formControlName="name">
+      </div>
+
+      <div class="my-2">
+        <p class="fw-bold">Skills</p>
+        <div class="row" formArrayName="skills">
+          <div class="col-md-6 mb-3"
+               *ngFor="let control of skillsControl.controls; let myIndex = index">
+            <div [formGroupName]="myIndex" class="bg-primary">
+              <input class="form-control mb-2"
+                     type="text"
+                     placeholder="Language"
+                     formControlName="language">
+              <input class="form-control mb-2"
+                     type="text"
+                     placeholder="Project URL"
+                     formControlName="projectUrl">
+              <input class="form-control mb-2"
+                     type="text"
+                     placeholder="Experience years"
+                     formControlName="experienceYears"
+                     [class.is-invalid]="expYearsControlIsInvalid(myIndex)">
+              <div class="d-flex justify-content-center gap-1">
+                <button class="btn btn-outline-light"
+                        (click)="removeValidator(myIndex)">
+                  RemoveV
+                </button>
+                <button class="btn btn-outline-light"
+                        (click)="addValidator(myIndex)">
+                  AddV
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="col-md-5 border border-4 py-2 rounded-3">
+    <p class="fw-bold">
+      Is the form valid?:
+      <small>
+        <i class="fas fa-check" [ngClass]="{'fa-check': myForm.valid, 'fa-times': myForm.invalid}"></i>
+      </small>
+    </p>
+    <code>
+      <pre>
+        {{ myForm.value | json}}
+      </pre>
+    </code>
+  </div>
+
+</div>

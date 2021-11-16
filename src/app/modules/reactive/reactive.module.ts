@@ -4,11 +4,15 @@ import { ReactiveRoutingModule } from './reactive-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ReactiveComponent } from './reactive.component';
+import { ExampleComponent } from './pages/example/example.component';
+import { Example1Component } from './pages/example1/example1.component';
 
 
 @NgModule({
   declarations: [
-    ReactiveComponent
+    ReactiveComponent,
+    ExampleComponent,
+    Example1Component
   ],
   imports: [
     CommonModule,
